@@ -13,7 +13,7 @@ YELLOW='\033[0;33m'
 NC='\033[0m' # No Color
 
 # Default is the present working directory; otherwise, use the first argument
-ROOT_FOLDER=${1:-.}
+ROOT_FOLDER=$(echo "${1:-.}" | sed 's:/*$::')
 
 # Find and save all subfolders of ROOT_FOLDER, sorting them
 FIND=$(find "${ROOT_FOLDER}" -mindepth 1 -maxdepth 1 -type d -printf "%f,%TY-%Tm-%Td,%u\n" | sort )
